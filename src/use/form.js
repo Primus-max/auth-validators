@@ -12,10 +12,7 @@ export function useForm(init) {
     const filteredValidKey = k => k !== validKey
 
     form[validKey] = computed(()=> {
-        return Object.keys(form).filter(filteredValidKey).reduce((acc, k) => {
-            acc = form[k].valid
-            return acc
-        }, true)
+        return Object.keys(form).filter(filteredValidKey).every(k => form[k].valid)
     })
 
     return {
