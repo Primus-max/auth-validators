@@ -5,6 +5,7 @@ const not = val => !val
 export function useField(field) {
     const valid = ref(true)
     const value = ref(field.value)
+    const touched = ref(false)
     const errors = reactive({})
 
     const reassign = val => {
@@ -23,5 +24,5 @@ export function useField(field) {
     watch(value, reassign)
     reassign(value)
 
-    return {valid, value, errors}
+    return {valid, value, errors, touched, blur: ()=> touched.value = true}
 }
